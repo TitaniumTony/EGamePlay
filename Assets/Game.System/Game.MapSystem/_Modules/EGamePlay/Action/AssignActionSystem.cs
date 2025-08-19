@@ -24,7 +24,7 @@ namespace EGamePlay
             EcsObject.Destroy(entity);
         }
 
-        //Ç°ÖÃ´¦Àí
+        //å‰ç½®å¤„ç†
         private static bool ActionCheckProcess(EffectAssignAction entity)
         {
             if (entity.Target == null)

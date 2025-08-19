@@ -5,21 +5,21 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEditor;
 
-//×÷Õß£ºÍÁÍÁµÄÕÅĞ¡ÍÁ
-//Á´½Ó£ºhttps://zhuanlan.zhihu.com/p/439735583
-//À´Ô´£ºÖªºõ
+//ä½œè€…ï¼šåœŸåœŸçš„å¼ å°åœŸ
+//é“¾æ¥ï¼šhttps://zhuanlan.zhihu.com/p/439735583
+//æ¥æºï¼šçŸ¥ä¹
 
 namespace EGamePlay
 {
     [CustomEditor(typeof(BezierComponent))]
     public class BezierComponentInspector : Editor
     {
-        //ÕâÁ½¸ö»­BeizerÏß¶ÎµÄÊ±ºòÒªÓÃ
+        //è¿™ä¸¤ä¸ªç”»Beizerçº¿æ®µçš„æ—¶å€™è¦ç”¨
         private Vector3 lastPosition;
         private Vector3 lastOutTangent;
-        //ÕıÔÚ²Ù×÷ÄÄ¸ö¿ØÖÆµã
+        //æ­£åœ¨æ“ä½œå“ªä¸ªæ§åˆ¶ç‚¹
         int pickedIndex = -1;
-        //ÕıÔÚ²Ù×÷¿ØÖÆµãµÄÄÄÒ»²¿·Ö
+        //æ­£åœ¨æ“ä½œæ§åˆ¶ç‚¹çš„å“ªä¸€éƒ¨åˆ†
         enum CtrlPointPickedType
         {
             position,
@@ -36,34 +36,34 @@ namespace EGamePlay
             {
                 return;
             }
-            //´¦ÀíÍÏ¶¯²Ù×÷µÄ²¿·Ö
-            //·ÀÔ½½ç
+            //å¤„ç†æ‹–åŠ¨æ“ä½œçš„éƒ¨åˆ†
+            //é˜²è¶Šç•Œ
             if (pickedIndex >= bezierComponent.ctrlPoints.Count)
             {
                 pickedIndex = -1;
             }
             if (pickedIndex != -1)
             {
-                //µÃµ½ÕıÔÚ²Ù×÷µÄ¿ØÖÆµã
+                //å¾—åˆ°æ­£åœ¨æ“ä½œçš„æ§åˆ¶ç‚¹
                 var pickedCtrlPoint = bezierComponent.ctrlPoints[pickedIndex];
-                //½ÇµãÖ»ÄÜ±à¼­Î»ÖÃ²»ÄÜ±à¼­Tangent
+                //è§’ç‚¹åªèƒ½ç¼–è¾‘ä½ç½®ä¸èƒ½ç¼–è¾‘Tangent
                 if (pickedCtrlPoint.HandleStyle == NaughtyBezierCurves.BezierPoint3D.HandleType.Broken) pickedType = CtrlPointPickedType.position;
                 if (pickedType == CtrlPointPickedType.position)
                 {
-                    //Ê¹ÓÃPositionHandle²Ù×÷ËüµÄÎ»ÖÃ
+                    //ä½¿ç”¨PositionHandleæ“ä½œå®ƒçš„ä½ç½®
                     Vector3 newPosition = Handles.PositionHandle(pickedCtrlPoint.Position, Quaternion.identity);
                     pickedCtrlPoint.Position = newPosition;
                 }
                 else if (pickedType == CtrlPointPickedType.inTangent)
                 {
-                    //Ê¹ÓÃPositionHandle²Ù×÷InTangent
+                    //ä½¿ç”¨PositionHandleæ“ä½œInTangent
                     Vector3 position = pickedCtrlPoint.Position;
                     Vector3 newInTangent = Handles.PositionHandle((Vector3)pickedCtrlPoint.InTangent + position, Quaternion.identity) - position;
                     pickedCtrlPoint.InTangent = newInTangent;
                 }
                 else if (pickedType == CtrlPointPickedType.outTangent)
                 {
-                    //¸úÉÏÒ»¸ö²î²»¶à
+                    //è·Ÿä¸Šä¸€ä¸ªå·®ä¸å¤š
                     Vector3 position = pickedCtrlPoint.Position;
                     Vector3 newOutTangent = Handles.PositionHandle((Vector3)pickedCtrlPoint.OutTangent + position, Quaternion.identity) - position;
                     pickedCtrlPoint.OutTangent = newOutTangent;
@@ -73,7 +73,7 @@ namespace EGamePlay
 
             for (int i = 0; i < bezierComponent.ctrlPoints.Count; i++)
             {
-                //Ò»¸ö¸öµØ°Ñ¿ØÖÆµãäÖÈ¾³öÀ´
+                //ä¸€ä¸ªä¸ªåœ°æŠŠæ§åˆ¶ç‚¹æ¸²æŸ“å‡ºæ¥
                 var ctrlPoint = bezierComponent.ctrlPoints[i];
                 var type = ctrlPoint.HandleStyle;
                 var position = ctrlPoint.Position;
@@ -82,7 +82,7 @@ namespace EGamePlay
                 bool button_picked = Handles.Button(position, Quaternion.identity, 0.1f, 0.1f, Handles.CubeHandleCap);
                 if (button_picked)
                 {
-                    //Ö»ÒªµãÁËÕâ¸ö¿ØÖÆµã£¬¾ÍÊÇÑ¡ÁËËü£¬ÏÂÒ»Ö¡PositionHandle¾ÍÔÚËüÉÏÃæ³öÏÖ
+                    //åªè¦ç‚¹äº†è¿™ä¸ªæ§åˆ¶ç‚¹ï¼Œå°±æ˜¯é€‰äº†å®ƒï¼Œä¸‹ä¸€å¸§PositionHandleå°±åœ¨å®ƒä¸Šé¢å‡ºç°
                     pickedIndex = i;
                     pickedType = CtrlPointPickedType.position;
                     //to-do:
@@ -90,7 +90,7 @@ namespace EGamePlay
 
                 if (type != NaughtyBezierCurves.BezierPoint3D.HandleType.Broken)
                 {
-                    //»­InTangent
+                    //ç”»InTangent
                     Handles.DrawLine(position, inTangentPoint);
                     bool in_tangent_picked = Handles.Button(inTangentPoint, Quaternion.identity, 0.1f, 0.1f, Handles.SphereHandleCap);
                     if (in_tangent_picked)
@@ -99,7 +99,7 @@ namespace EGamePlay
                         pickedType = CtrlPointPickedType.inTangent;
                         //to-do:
                     }
-                    //»­OutTangent
+                    //ç”»OutTangent
                     Handles.DrawLine(position, outTangentPoint);
                     bool out_tangent_picked = Handles.Button(outTangentPoint, Quaternion.identity, 0.1f, 0.1f, Handles.SphereHandleCap);
                     if (out_tangent_picked)
@@ -109,12 +109,12 @@ namespace EGamePlay
                         //to_do:
                     }
                 }
-                ////´ÓµÚ¶ş¸ö¿ØÖÆµã¿ªÊ¼»­BezierÏß¶Î
+                ////ä»ç¬¬äºŒä¸ªæ§åˆ¶ç‚¹å¼€å§‹ç”»Bezierçº¿æ®µ
                 //if (i > 0)
                 //{
                 //    Handles.DrawBezier(lastPosition, position, lastOutTangent, inTangentPoint, Color.green, null, 2f);
                 //}
-                ////ËùÒÔÃ¿´ÎÏÈÔİ´æÏÂ¿ØÖÆµãÎ»ÖÃºÍOutTangent£¬Áô¸øÏÂÒ»¸ö¿ØÖÆµã»­ÏßÓÃ
+                ////æ‰€ä»¥æ¯æ¬¡å…ˆæš‚å­˜ä¸‹æ§åˆ¶ç‚¹ä½ç½®å’ŒOutTangentï¼Œç•™ç»™ä¸‹ä¸€ä¸ªæ§åˆ¶ç‚¹ç”»çº¿ç”¨
                 //lastPosition = position;
                 //lastOutTangent = outTangentPoint;
             }

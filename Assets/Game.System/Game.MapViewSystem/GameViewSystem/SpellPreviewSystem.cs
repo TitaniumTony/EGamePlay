@@ -101,12 +101,12 @@ namespace EGamePlay
             var targetSelectType = SkillTargetSelectType.Custom;
             var affectTargetType = SkillAffectTargetType.EnemyTeam;
             var skillId = component.PreviewingSkill.Config.Id;
-            if (component.PreviewingSkill.Config.TargetSelect == "ÊÖ¶¯Ö¸¶¨") targetSelectType = SkillTargetSelectType.PlayerSelect;
-            if (component.PreviewingSkill.Config.TargetSelect == "Åö×²¼ì²â") targetSelectType = SkillTargetSelectType.CollisionSelect;
-            if (component.PreviewingSkill.Config.TargetSelect == "Ìõ¼şÖ¸¶¨") targetSelectType = SkillTargetSelectType.ConditionSelect;
-            if (component.PreviewingSkill.Config.TargetGroup == "×ÔÉí") affectTargetType = SkillAffectTargetType.Self;
-            if (component.PreviewingSkill.Config.TargetGroup == "¼º·½") affectTargetType = SkillAffectTargetType.SelfTeam;
-            if (component.PreviewingSkill.Config.TargetGroup == "µĞ·½") affectTargetType = SkillAffectTargetType.EnemyTeam;
+            if (component.PreviewingSkill.Config.TargetSelect == "æ‰‹åŠ¨æŒ‡å®š") targetSelectType = SkillTargetSelectType.PlayerSelect;
+            if (component.PreviewingSkill.Config.TargetSelect == "ç¢°æ’æ£€æµ‹") targetSelectType = SkillTargetSelectType.CollisionSelect;
+            if (component.PreviewingSkill.Config.TargetSelect == "æ¡ä»¶æŒ‡å®š") targetSelectType = SkillTargetSelectType.ConditionSelect;
+            if (component.PreviewingSkill.Config.TargetGroup == "è‡ªèº«") affectTargetType = SkillAffectTargetType.Self;
+            if (component.PreviewingSkill.Config.TargetGroup == "å·±æ–¹") affectTargetType = SkillAffectTargetType.SelfTeam;
+            if (component.PreviewingSkill.Config.TargetGroup == "æ•Œæ–¹") affectTargetType = SkillAffectTargetType.EnemyTeam;
             if (targetSelectType == SkillTargetSelectType.PlayerSelect)
             {
                 TargetSelectManager.Instance.TargetLimitType = TargetLimitType.EnemyTeam;

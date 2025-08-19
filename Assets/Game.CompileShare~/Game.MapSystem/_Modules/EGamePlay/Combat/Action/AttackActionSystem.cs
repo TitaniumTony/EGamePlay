@@ -25,7 +25,7 @@ namespace EGamePlay
             EcsEntity.Destroy(entity);
         }
 
-        //前置处理
+        //鍓嶇疆澶勭悊
         private static void PreProcess(AttackAction entity)
         {
             BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PreExecuteAttack, entity);
@@ -41,7 +41,7 @@ namespace EGamePlay
             FinishAction(entity);
         }
 
-        //后置处理
+        //鍚庣疆澶勭悊
         private static void PostProcess(AttackAction entity)
         {
             BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PostExecuteAttack, entity);

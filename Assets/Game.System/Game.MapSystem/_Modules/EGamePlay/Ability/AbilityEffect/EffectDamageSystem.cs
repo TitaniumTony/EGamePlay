@@ -25,9 +25,9 @@ namespace EGamePlay
         {
             var component = entity.GetComponent<EffectDamageComponent>();
             var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(component.DamageValueFormula);
-            if (expression.Parameters.ContainsKey("×ÔÉí¹¥»÷Á¦"))
+            if (expression.Parameters.ContainsKey("è‡ªèº«æ”»å‡»åŠ›"))
             {
-                expression.Parameters["×ÔÉí¹¥»÷Á¦"].Value = entity.OwnerEntity.GetComponent<AttributeComponent>().Attack.Value;
+                expression.Parameters["è‡ªèº«æ”»å‡»åŠ›"].Value = entity.OwnerEntity.GetComponent<AttributeComponent>().Attack.Value;
             }
             return (int)System.Math.Ceiling((float)expression.Value);
         }

@@ -19,12 +19,12 @@ namespace EGamePlay
         public BezierCurve3D BezierCurve { get => CollisionExecuteData.BezierCurve; }
         public ItemExecute CollisionExecuteData;
 
-        //ÕâÁ½¸ö»­BeizerÏß¶ÎµÄÊ±ºòÒªÓÃ
+        //è¿™ä¸¤ä¸ªç”»Beizerçº¿æ®µçš„æ—¶å€™è¦ç”¨
         private Vector3 lastPosition;
         private Vector3 lastOutTangent;
-        //ÕıÔÚ²Ù×÷ÄÄ¸ö¿ØÖÆµã
+        //æ­£åœ¨æ“ä½œå“ªä¸ªæ§åˆ¶ç‚¹
         int pickedIndex = -1;
-        //ÕıÔÚ²Ù×÷¿ØÖÆµãµÄÄÄÒ»²¿·Ö
+        //æ­£åœ¨æ“ä½œæ§åˆ¶ç‚¹çš„å“ªä¸€éƒ¨åˆ†
         enum CtrlPointPickedType
         {
             position,
@@ -69,7 +69,7 @@ namespace EGamePlay
         //    t = t - segment_index;
         //    float u = 1 - t;
         //    if (derivativeOrder < 0) derivativeOrder = 0;
-        //    //Ô­º¯Êı
+        //    //åŸå‡½æ•°
         //    if (derivativeOrder == 0)
         //    {
         //        var v = p[0] * u * u * u + 3 * p[1] * u * u * t + 3 * p[2] * u * t * t + p[3] * t * t * t;
@@ -82,7 +82,7 @@ namespace EGamePlay
         //        q[0] = 3 * (p[1] - p[0]);
         //        q[1] = 3 * (p[2] - p[1]);
         //        q[2] = 3 * (p[3] - p[2]);
-        //        //Ò»½×µ¼
+        //        //ä¸€é˜¶å¯¼
         //        if (derivativeOrder == 1)
         //        {
         //            return q[0] * u * u + 2 * q[1] * t * u + q[2] * t * t;
@@ -92,19 +92,19 @@ namespace EGamePlay
         //            Vector3[] r = new Vector3[2];
         //            r[0] = 2 * (q[1] - q[0]);
         //            r[1] = 2 * (q[2] - q[1]);
-        //            //¶ş½×µ¼
+        //            //äºŒé˜¶å¯¼
         //            if (derivativeOrder == 2)
         //            {
         //                return r[0] * u + r[1] * t;
         //            }
         //            else if (derivativeOrder > 2)
         //            {
-        //                //Èı½×µ¼
+        //                //ä¸‰é˜¶å¯¼
         //                if (derivativeOrder == 3)
         //                {
         //                    return r[1] - r[0];
         //                }
-        //                //ÆäËû½×µ¼
+        //                //å…¶ä»–é˜¶å¯¼
         //                else if (derivativeOrder > 3)
         //                {
         //                    return Vector3.zero;
@@ -124,7 +124,7 @@ namespace EGamePlay
             }
             for (int i = 0; i < bezierComponent.ctrlPoints.Count; i++)
             {
-                //Ò»¸ö¸öµØ°Ñ¿ØÖÆµãäÖÈ¾³öÀ´
+                //ä¸€ä¸ªä¸ªåœ°æŠŠæ§åˆ¶ç‚¹æ¸²æŸ“å‡ºæ¥
                 var ctrlPoint = bezierComponent.ctrlPoints[i];
                 var type = ctrlPoint.HandleStyle;
                 var position = ctrlPoint.Position;
@@ -135,12 +135,12 @@ namespace EGamePlay
                     inTangentPoint = position;
                     outTangentPoint = position;
                 }
-                //´ÓµÚ¶ş¸ö¿ØÖÆµã¿ªÊ¼»­BezierÏß¶Î
+                //ä»ç¬¬äºŒä¸ªæ§åˆ¶ç‚¹å¼€å§‹ç”»Bezierçº¿æ®µ
                 if (i > 0)
                 {
                     Handles.DrawBezier(lastPosition, position, lastOutTangent, inTangentPoint, Color.green, null, 2f);
                 }
-                //ËùÒÔÃ¿´ÎÏÈÔİ´æÏÂ¿ØÖÆµãÎ»ÖÃºÍOutTangent£¬Áô¸øÏÂÒ»¸ö¿ØÖÆµã»­ÏßÓÃ
+                //æ‰€ä»¥æ¯æ¬¡å…ˆæš‚å­˜ä¸‹æ§åˆ¶ç‚¹ä½ç½®å’ŒOutTangentï¼Œç•™ç»™ä¸‹ä¸€ä¸ªæ§åˆ¶ç‚¹ç”»çº¿ç”¨
                 lastPosition = position;
                 lastOutTangent = outTangentPoint;
             }

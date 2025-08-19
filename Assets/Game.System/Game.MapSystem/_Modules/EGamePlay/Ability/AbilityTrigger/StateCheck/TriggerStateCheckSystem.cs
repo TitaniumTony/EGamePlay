@@ -32,7 +32,7 @@ namespace EGamePlay
                 }
                 var condition = conditionStr;
                 if (conditionStr.StartsWith("!")) condition = conditionStr.TrimStart('!');
-                var arr2 = condition.Split('<', '=', '¡Ü');
+                var arr2 = condition.Split('<', '=', 'â‰¤');
                 var conditionType = arr2[0];
                 var scriptType = $"EGamePlay.Combat.StateCheck_{conditionType}Check";
                 var typeClass = System.Type.GetType(scriptType);
@@ -62,14 +62,14 @@ namespace EGamePlay
         public static bool CheckTargetState(AbilityTrigger entity, EcsEntity target)
         {
             var component = entity.GetComponent<TriggerStateCheckComponent>();
-            /// ÕâÀïÊÇ×´Ì¬ÅĞ¶Ï£¬×´Ì¬ÅĞ¶ÏÊÇÅĞ¶ÏÄ¿±êµÄ×´Ì¬ÊÇ·ñÂú×ãÌõ¼ş£¬Âú×ãÔò´¥·¢Ğ§¹û
+            /// è¿™é‡Œæ˜¯çŠ¶æ€åˆ¤æ–­ï¼ŒçŠ¶æ€åˆ¤æ–­æ˜¯åˆ¤æ–­ç›®æ ‡çš„çŠ¶æ€æ˜¯å¦æ»¡è¶³æ¡ä»¶ï¼Œæ»¡è¶³åˆ™è§¦å‘æ•ˆæœ
             var conditionCheckResult = true;
             foreach (var pair in component.StateCheckMap)
             {
                 var item = pair.Value;
                 var invert = pair.Key.Item2;
                 var affectCheck = pair.Key.Item1;
-                /// Ìõ¼şÈ¡·´
+                /// æ¡ä»¶å–å
                 if (invert)
                 {
                     if (item.CheckWith(affectCheck, target))

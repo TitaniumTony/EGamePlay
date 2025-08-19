@@ -30,20 +30,20 @@ namespace EGamePlay
 
         public void Enable(AbilityTrigger entity)
         {
-            /// ±»¶¯´¥·¢
+            /// è¢«åŠ¨è§¦å‘
             if (entity.TriggerConfig.TriggerType == EffectTriggerType.AutoTrigger)
             {
-                /// ÄÜÁ¦¼¤»îÊ±´¥·¢
+                /// èƒ½åŠ›æ¿€æ´»æ—¶è§¦å‘
                 if (entity.TriggerConfig.AutoTriggerType == EffectAutoTriggerType.Instant)
                 {
                     OnTrigger(entity, new TriggerContext() { Target = entity.ParentEntity });
                 }
-                /// °´ĞĞ¶¯µãÊÂ¼ş´¥·¢
+                /// æŒ‰è¡ŒåŠ¨ç‚¹äº‹ä»¶è§¦å‘
                 if (entity.TriggerConfig.AutoTriggerType == EffectAutoTriggerType.Action)
                 {
                     entity.AddComponent<BehaviourObserveComponent>();
                 }
-                /// °´¼ÆÊ±×´Ì¬ÊÂ¼ş´¥·¢
+                /// æŒ‰è®¡æ—¶çŠ¶æ€äº‹ä»¶è§¦å‘
                 if (entity.TriggerConfig.AutoTriggerType == EffectAutoTriggerType.Condition)
                 {
                     var conditionType = entity.TriggerConfig.ConditionType;
@@ -92,13 +92,13 @@ namespace EGamePlay
 
             var stateCheckResult = true;
 
-            /// ÕâÀïÊÇ×´Ì¬ÅĞ¶Ï£¬×´Ì¬ÅĞ¶ÏÊÇÅĞ¶ÏÄ¿±êµÄ×´Ì¬ÊÇ·ñÂú×ãÌõ¼ş£¬Âú×ã²ÅÄÜ´¥·¢Ğ§¹û
+            /// è¿™é‡Œæ˜¯çŠ¶æ€åˆ¤æ–­ï¼ŒçŠ¶æ€åˆ¤æ–­æ˜¯åˆ¤æ–­ç›®æ ‡çš„çŠ¶æ€æ˜¯å¦æ»¡è¶³æ¡ä»¶ï¼Œæ»¡è¶³æ‰èƒ½è§¦å‘æ•ˆæœ
             if (abilityTrigger.GetComponent<TriggerStateCheckComponent>() is { } component)
             {
                 stateCheckResult = TriggerStateCheckSystem.CheckTargetState(abilityTrigger, target);
             }
 
-            /// Ìõ¼şÂú×ãÔò´¥·¢Ğ§¹û
+            /// æ¡ä»¶æ»¡è¶³åˆ™è§¦å‘æ•ˆæœ
             if (stateCheckResult)
             {
                 foreach (var item in entity.TriggerConfig.TriggerEffects)

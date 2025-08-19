@@ -177,7 +177,7 @@ namespace EGamePlay
             AbilityExecutionSystem.BeginExecute(execution);
         }
 
-        /// <summary>   Ä¿±ê·ÉĞĞÅö×²Ìå     </summary>
+        /// <summary>   ç›®æ ‡é£è¡Œç¢°æ’ä½“     </summary>
         public static void TargetFlyProcess(AbilityItem abilityItem, CombatEntity inputTarget)
         {
             var clipData = abilityItem.GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;
@@ -191,7 +191,7 @@ namespace EGamePlay
 //#endif
         }
 
-        //        /// <summary>   Ç°Ïò·ÉĞĞÅö×²Ìå     </summary>
+        //        /// <summary>   å‰å‘é£è¡Œç¢°æ’ä½“     </summary>
         //        public void ForwardFlyProcess(float inputRadian)
         //        {
         //            var abilityItem = this;
@@ -206,7 +206,7 @@ namespace EGamePlay
         //#endif
         //        }
 
-        //        /// <summary>   Â·¾¶·ÉĞĞ     </summary>
+        //        /// <summary>   è·¯å¾„é£è¡Œ     </summary>
         //        public void PathFlyProcess(Vector3 inputPoint)
         //        {
         //            var skillExecution = (AbilityExecution as AbilityExecution);
@@ -243,7 +243,7 @@ namespace EGamePlay
         //            moveComp.DOMove();
         //        }
 
-        //        /// <summary>   ³¯ÏòÂ·¾¶·ÉĞĞ     </summary>
+        //        /// <summary>   æœå‘è·¯å¾„é£è¡Œ     </summary>
         //        public void DirectionPathFlyProcess(Vector3 inputPoint, float inputRadian)
         //        {
         //            var abilityItem = this;
@@ -285,7 +285,7 @@ namespace EGamePlay
         //            moveComp.DOMove();
         //        }
 
-        //        /// <summary>   ¹Ì¶¨Î»ÖÃÅö×²Ìå     </summary>
+        //        /// <summary>   å›ºå®šä½ç½®ç¢°æ’ä½“     </summary>
         //        public void FixedPositionProcess()
         //        {
         //            var abilityItem = this;
@@ -303,7 +303,7 @@ namespace EGamePlay
         //            }
         //        }
 
-        //        /// <summary>   ÊäÈëÎ»ÖÃÅö×²Ìå     </summary>
+        //        /// <summary>   è¾“å…¥ä½ç½®ç¢°æ’ä½“     </summary>
         //        public void SelectedPositionProcess(Vector3 InputPoint)
         //        {
         //            var abilityItem = this;
@@ -315,7 +315,7 @@ namespace EGamePlay
         //            }
         //        }
 
-        //        /// <summary>   ÊäÈë·½ÏòÅö×²Ìå     </summary>
+        //        /// <summary>   è¾“å…¥æ–¹å‘ç¢°æ’ä½“     </summary>
         //        public void SelectedDirectionProcess()
         //        {
         //            var abilityItem = this;
@@ -326,7 +326,7 @@ namespace EGamePlay
         //        }
 
 #if EGAMEPLAY_ET
-        /// <summary>   ´´½¨¼¼ÄÜÅö×²Ìå     </summary>
+        /// <summary>   åˆ›å»ºæŠ€èƒ½ç¢°æ’ä½“     </summary>
         public static ItemUnit AddCollisionComponent(AbilityItem abilityItem)
         {
             var scene = AbilityExecution.OwnerEntity.GetComponent<CombatUnitComponent>().Unit.GetParent<Scene>();

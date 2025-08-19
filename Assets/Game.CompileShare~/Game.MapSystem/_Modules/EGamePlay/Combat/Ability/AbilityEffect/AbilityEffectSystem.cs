@@ -19,22 +19,22 @@ namespace EGamePlay
         {
             entity.Name = entity.EffectConfig.GetType().Name;
 
-            /// ĞĞ¶¯½ûÖÆ
+            /// è¡ŒåŠ¨ç¦åˆ¶
             if (entity.EffectConfig is ActionControlEffect) entity.AddComponent<EffectActionControlComponent>();
-            /// ÊôĞÔĞŞÊÎ
+            /// å±æ€§ä¿®é¥°
             if (entity.EffectConfig is AttributeModifyEffect) entity.AddComponent<EffectAttributeModifyComponent>();
 
-            /// ÉËº¦Ğ§¹û
+            /// ä¼¤å®³æ•ˆæœ
             if (entity.EffectConfig is DamageEffect) entity.AddComponent<EffectDamageComponent>();
-            /// ÖÎÁÆĞ§¹û
+            /// æ²»ç–—æ•ˆæœ
             if (entity.EffectConfig is CureEffect) entity.AddComponent<EffectCureComponent>();
-            /// ¹â¶Ü·ÀÓùĞ§¹û
+            /// å…‰ç›¾é˜²å¾¡æ•ˆæœ
             if (entity.EffectConfig is ShieldDefenseEffect) entity.AddComponent<EffectShieldDefenseComponent>();
-            /// Ê©¼Ó×´Ì¬Ğ§¹û
+            /// æ–½åŠ çŠ¶æ€æ•ˆæœ
             if (entity.EffectConfig is AddStatusEffect) entity.AddComponent<EffectAddBuffComponent>();
-            /// ×Ô¶¨ÒåĞ§¹û
+            /// è‡ªå®šä¹‰æ•ˆæœ
             //if (this.EffectConfig is CustomEffect) AddComponent<EffectCustomComponent>();
-            /// Ğ§¹ûĞŞÊÎ
+            /// æ•ˆæœä¿®é¥°
             var decorators = entity.EffectConfig.Decorators;
             if (decorators != null && decorators.Count > 0) entity.AddComponent<EffectDecoratorComponent>();
         }

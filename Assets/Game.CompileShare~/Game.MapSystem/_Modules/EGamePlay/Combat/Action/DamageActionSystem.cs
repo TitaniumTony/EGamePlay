@@ -24,7 +24,7 @@ namespace EGamePlay
             EcsEntity.Destroy(entity);
         }
 
-        //前置处理
+        //鍓嶇疆澶勭悊
         private static void ActionProcess(DamageAction entity)
         {
             if (entity.DamageSource == DamageSource.Attack)
@@ -85,7 +85,7 @@ namespace EGamePlay
             BehaviourPointSystem.TriggerApplyPoint(entity.Creator, ApplyPointType.PreCauseDamage, entity);
             BehaviourPointSystem.TriggerApplyPoint(entity.Target, ApplyPointType.PreReceiveDamage, entity);
 
-            //伤害实际施效流程
+            //浼ゅ瀹為檯鏂芥晥娴佺▼
             HealthPointSystem.ReceiveDamage(entity.Target, entity);
 
             BehaviourPointSystem.TriggerApplyPoint(entity.Creator, ApplyPointType.PostCauseDamage, entity);
@@ -103,7 +103,7 @@ namespace EGamePlay
             FinishAction(entity);
         }
 
-        //后置处理
+        //鍚庣疆澶勭悊
         private static void AfterActionProcess(DamageAction entity)
         {
             BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PostExecuteDamage, entity);

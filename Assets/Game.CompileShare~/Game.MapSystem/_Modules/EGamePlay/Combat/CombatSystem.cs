@@ -62,7 +62,7 @@ namespace EGamePlay
             return entity;
         }
 
-        #region ĞĞ¶¯µãÊÂ¼ş
+        #region è¡ŒåŠ¨ç‚¹äº‹ä»¶
         public static void ListenActionPoint(CombatEntity entity, ActionPointType actionPointType, Action<EcsEntity> action)
         {
             BehaviourPointSystem.AddListener(entity, actionPointType, action);
@@ -98,7 +98,7 @@ namespace EGamePlay
             AbilitySystem.TryActivateAbility(abilityEntity);
         }
 
-        //#region »ØºÏÖÆÕ½¶·
+        //#region å›åˆåˆ¶æˆ˜æ–—
         //public int SeatNumber { get; set; }
         //public int JumpToTime { get; set; }
         //public bool IsHero { get; set; }

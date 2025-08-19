@@ -110,7 +110,7 @@ namespace EGamePlay
         }
 
         /// <summary>
-        /// ´¥·¢CreatorÊ©Ğ§µã
+        /// è§¦å‘Creatoræ–½æ•ˆç‚¹
         /// </summary>
         public static void TriggerCreatorApplyPoint(IActionExecute actionExecute, ApplyPointType pointType)
         {
@@ -119,7 +119,7 @@ namespace EGamePlay
         }
 
         /// <summary>
-        /// ´¥·¢TargetÊ©Ğ§µã
+        /// è§¦å‘Targetæ–½æ•ˆç‚¹
         /// </summary>
         public static void TriggerTargetApplyPoint(IActionExecute actionExecute, ApplyPointType pointType)
         {
@@ -128,7 +128,7 @@ namespace EGamePlay
         }
 
         /// <summary>
-        /// ´¥·¢CreatorĞĞ¶¯µã
+        /// è§¦å‘Creatorè¡ŒåŠ¨ç‚¹
         /// </summary>
         public static void TriggerCreatorActionPoint(IActionExecute actionExecute, ActionPointType pointType)
         {
@@ -137,7 +137,7 @@ namespace EGamePlay
         }
 
         /// <summary>
-        /// ´¥·¢TargetĞĞ¶¯µã
+        /// è§¦å‘Targetè¡ŒåŠ¨ç‚¹
         /// </summary>
         public static void TriggerTargetActionPoint(IActionExecute actionExecute, ActionPointType pointType)
         {

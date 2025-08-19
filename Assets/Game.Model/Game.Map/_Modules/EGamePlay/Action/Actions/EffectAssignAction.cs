@@ -29,27 +29,27 @@ namespace EGamePlay.Combat
     }
 
     /// <summary>
-    /// ¸³¸øĞ§¹ûĞĞ¶¯
+    /// èµ‹ç»™æ•ˆæœè¡ŒåŠ¨
     /// </summary>
     public class EffectAssignAction : EcsEntity, IActionExecute
     {
-        /// ´´½¨Õâ¸öĞ§¹û¸³¸øĞĞ¶¯µÄÔ´ÄÜÁ¦
+        /// åˆ›å»ºè¿™ä¸ªæ•ˆæœèµ‹ç»™è¡ŒåŠ¨çš„æºèƒ½åŠ›
         public EcsEntity SourceAbility { get; set; }
-        /// Ä¿±êĞĞ¶¯
+        /// ç›®æ ‡è¡ŒåŠ¨
         public IActionExecute TargetAction { get; set; }
         public AbilityEffect AbilityEffect { get; set; }
         public Effect EffectConfig => AbilityEffect.EffectConfig;
-        /// ĞĞ¶¯ÄÜÁ¦
+        /// è¡ŒåŠ¨èƒ½åŠ›
         public EcsEntity ActionAbility { get; set; }
-        /// Ğ§¹û¸³¸øĞĞ¶¯Ô´
+        /// æ•ˆæœèµ‹ç»™è¡ŒåŠ¨æº
         public EffectAssignAction SourceAssignAction { get; set; }
-        /// ĞĞ¶¯ÊµÌå
+        /// è¡ŒåŠ¨å®ä½“
         public CombatEntity Creator { get; set; }
-        /// Ä¿±ê¶ÔÏó
+        /// ç›®æ ‡å¯¹è±¡
         public EcsEntity Target { get; set; }
-        /// ¸³¸øÄ¿±ê
+        /// èµ‹ç»™ç›®æ ‡
         public EcsEntity AssignTarget { get; set; }
-        /// ´¥·¢ÉÏÏÂÎÄ
+        /// è§¦å‘ä¸Šä¸‹æ–‡
         public TriggerContext TriggerContext { get; set; }
     }
 }

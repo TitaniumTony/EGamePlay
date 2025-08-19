@@ -62,7 +62,7 @@ namespace EGamePlay
         public ParticleEffectData ParticleEffectData;
 #endif
 
-        [ShowIf("ExecuteClipType", ExecuteClipType.ItemExecute), LabelText("±íÏÖĞ§¹û"), Space(30)]
+        [ShowIf("ExecuteClipType", ExecuteClipType.ItemExecute), LabelText("è¡¨ç°æ•ˆæœ"), Space(30)]
         [ListDrawerSettings(DefaultExpandedState = true, DraggableItems = false, ShowItemCount = false, HideAddButton = true)]
         [HideReferenceObjectPicker]
         public List<ItemEffect> EffectDatas = new List<ItemEffect>();
@@ -71,9 +71,9 @@ namespace EGamePlay
         [OnInspectorGUI("BeginBox", append: false)]
         [HorizontalGroup(PaddingLeft = 40, PaddingRight = 40)]
         [HideLabel, OnValueChanged("AddEffect"), ValueDropdown("EffectTypeSelect"), JsonIgnore]
-        public string EffectTypeName = "(Ìí¼ÓĞ§¹û)";
+        public string EffectTypeName = "(æ·»åŠ æ•ˆæœ)";
 
-        //[LabelText("´¥·¢µã"), Space(30)]
+        //[LabelText("è§¦å‘ç‚¹"), Space(30)]
         //[ListDrawerSettings(DefaultExpandedState = true, DraggableItems = true, ShowItemCount = false, CustomAddFunction = "AddTrigger")]
         //[HideReferenceObjectPicker]
         //public List<ItemTriggerConfig> TriggerActions = new List<ItemTriggerConfig>();
@@ -88,13 +88,13 @@ namespace EGamePlay
                 .Select(x => x.GetCustomAttribute<EffectAttribute>().EffectType);
 
             var results = types.ToList();
-            results.Insert(0, "(Ìí¼ÓĞ§¹û)");
+            results.Insert(0, "(æ·»åŠ æ•ˆæœ)");
             return results;
         }
 
         private void AddEffect()
         {
-            if (EffectTypeName != "(Ìí¼ÓĞ§¹û)")
+            if (EffectTypeName != "(æ·»åŠ æ•ˆæœ)")
             {
                 var effectType = typeof(ItemEffect).Assembly.GetTypes()
                     .Where(x => !x.IsAbstract)
@@ -105,7 +105,7 @@ namespace EGamePlay
                 var effect = Activator.CreateInstance(effectType) as ItemEffect;
                 effect.Enabled = true;
                 EffectDatas.Add(effect);
-                EffectTypeName = "(Ìí¼ÓĞ§¹û)";
+                EffectTypeName = "(æ·»åŠ æ•ˆæœ)";
             }
         }
 
@@ -146,39 +146,39 @@ namespace EGamePlay
         ParticleEffect = 4,
     }
 
-    [LabelText("Ä¿±ê´«ÈëÀàĞÍ")]
+    [LabelText("ç›®æ ‡ä¼ å…¥ç±»å‹")]
     public enum ExecutionTargetInputType
     {
         [LabelText("None")]
         None = 0,
-        [LabelText("´«ÈëÄ¿±êÊµÌå")]
+        [LabelText("ä¼ å…¥ç›®æ ‡å®ä½“")]
         Target = 1,
-        [LabelText("´«ÈëÄ¿±êµã")]
+        [LabelText("ä¼ å…¥ç›®æ ‡ç‚¹")]
         Point = 2,
     }
 
-    [LabelText("ÊÂ¼şÀàĞÍ")]
+    [LabelText("äº‹ä»¶ç±»å‹")]
     public enum FireEventType
     {
-        [LabelText("´¥·¢¸³¸øĞ§¹û")]
+        [LabelText("è§¦å‘èµ‹ç»™æ•ˆæœ")]
         AssignEffect = 0,
-        [LabelText("´¥·¢ĞÂÖ´ĞĞÌå")]
+        [LabelText("è§¦å‘æ–°æ‰§è¡Œä½“")]
         TriggerNewExecution = 1,
-        //[LabelText("´¥·¢·ÀÓùĞ§¹û")]
+        //[LabelText("è§¦å‘é˜²å¾¡æ•ˆæœ")]
         //TriggerDefenseEffect = 2,
     }
 
-    [LabelText("´¥·¢ÀàĞÍ"), Flags]
+    [LabelText("è§¦å‘ç±»å‹"), Flags]
     public enum FireType
     {
         None = 0,
-        [LabelText("³õÊ¼´¥·¢")]
+        [LabelText("åˆå§‹è§¦å‘")]
         StartTrigger = 1 << 1,
-        [LabelText("Åö×²´¥·¢µ¥´Î")]
+        [LabelText("ç¢°æ’è§¦å‘å•æ¬¡")]
         CollisionTrigger = 1 << 2,
-        [LabelText("½áÊø´¥·¢")]
+        [LabelText("ç»“æŸè§¦å‘")]
         EndTrigger = 1 << 3,
-        [LabelText("Åö×²´¥·¢¶à´Î")]
+        [LabelText("ç¢°æ’è§¦å‘å¤šæ¬¡")]
         CollisionTriggerMultiple = 1 << 4,
     }
 
@@ -209,37 +209,37 @@ namespace EGamePlay
         }
 
         [ShowIf("IsTriggerAssign")]
-        [LabelText("Ö÷¶¯´¥·¢Ğ§¹û")]
+        [LabelText("ä¸»åŠ¨è§¦å‘æ•ˆæœ")]
         public ExecuteTriggerType ExecuteTrigger;
 
         [ShowIf("IsTriggerAssign")]
         public EffectApplyTarget EffectApplyTarget;
 
         [ShowIf("IsTriggerExecution")]
-        [LabelText("ĞÂÖ´ĞĞÌå")]
+        [LabelText("æ–°æ‰§è¡Œä½“")]
         public string NewExecution;
     }
 
     public enum CollisionExecuteType
     {
-        [LabelText("ÍÑÊÖÖ´ĞĞ")]
+        [LabelText("è„±æ‰‹æ‰§è¡Œ")]
         OutOfHand = 0,
-        [LabelText("Ö´ÊÖÖ´ĞĞ")]
+        [LabelText("æ‰§æ‰‹æ‰§è¡Œ")]
         InHand = 1,
     }
 
     public enum CollisionExecuteTargetType
     {
-        [LabelText("µĞ·½")]
+        [LabelText("æ•Œæ–¹")]
         EnemyGroup = 0,
-        [LabelText("¼º·½")]
+        [LabelText("å·±æ–¹")]
         SelfGroup = 1,
     }
 
     [Serializable]
     public class ItemExecute
     {
-        [LabelText("Ö´ĞĞÀàĞÍ")]
+        [LabelText("æ‰§è¡Œç±»å‹")]
         public CollisionExecuteType ExecuteType;
         [HideInInspector]
         public ActionEventData ActionData;
@@ -247,7 +247,7 @@ namespace EGamePlay
         //[Space(10)]
         //[HideInInspector]
         //public CollisionShape Shape;
-        //[ShowIf("Shape", CollisionShape.Sphere), LabelText("°ë¾¶")]
+        //[ShowIf("Shape", CollisionShape.Sphere), LabelText("åŠå¾„")]
         //[HideInInspector]
         //public double Radius;
 
@@ -277,7 +277,7 @@ namespace EGamePlay
         [ShowIf("ShowPoints")]
         public PathExecutePoint PathExecutePoint = PathExecutePoint.EntityOffset;
         [ShowIf("ShowPoints")]
-        [LabelText("Æ«ÒÆ")]
+        [LabelText("åç§»")]
         public Vector3 Offset;
 
         public List<BezierPoint3D> GetCtrlPoints()

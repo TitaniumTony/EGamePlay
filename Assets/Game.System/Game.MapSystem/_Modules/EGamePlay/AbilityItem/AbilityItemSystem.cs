@@ -191,7 +191,7 @@ namespace EGamePlay
             AbilityExecutionSystem.BeginExecute(execution);
         }
 
-        /// <summary>   Ä¿±ê·ÉĞĞÅö×²Ìå     </summary>
+        /// <summary>   ç›®æ ‡é£è¡Œç¢°æ’ä½“     </summary>
         public static void TargetFlyProcess(AbilityItem abilityItem, CombatEntity inputTarget)
         {
             var clipData = abilityItem.GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;
@@ -201,7 +201,7 @@ namespace EGamePlay
             AbilityItemMoveSystem.MoveToTarget(abilityItem, inputTarget, 0.02f);
         }
 
-        /// <summary>   Ç°Ïò·ÉĞĞÅö×²Ìå     </summary>
+        /// <summary>   å‰å‘é£è¡Œç¢°æ’ä½“     </summary>
         public static void ForwardFlyProcess(AbilityItem abilityItem, float inputRadian)
         {
             abilityItem.Position = abilityItem.AbilityExecution.OwnerEntity.Position;
@@ -213,7 +213,7 @@ namespace EGamePlay
             AbilityItemMoveSystem.MoveToPoint(abilityItem, destination, 0.02f);
         }
 
-        /// <summary>   Â·¾¶·ÉĞĞ     </summary>
+        /// <summary>   è·¯å¾„é£è¡Œ     </summary>
         public static void PathFlyProcess(AbilityItem abilityItem, Vector3 inputPoint)
         {
             var execution = abilityItem.AbilityExecution;
@@ -249,7 +249,7 @@ namespace EGamePlay
             AbilityItemMoveSystem.DOMove(abilityItem);
         }
 
-        /// <summary>   ³¯ÏòÂ·¾¶·ÉĞĞ     </summary>
+        /// <summary>   æœå‘è·¯å¾„é£è¡Œ     </summary>
         public static void DirectionPathFlyProcess(AbilityItem abilityItem, Vector3 inputPoint, float inputRadian)
         {
             var execution = abilityItem.AbilityExecution;
@@ -290,7 +290,7 @@ namespace EGamePlay
             AbilityItemMoveSystem.DOMove(abilityItem);
         }
 
-        /// <summary>   ¹Ì¶¨Î»ÖÃÅö×²Ìå     </summary>
+        /// <summary>   å›ºå®šä½ç½®ç¢°æ’ä½“     </summary>
         public static void FixedPositionProcess(AbilityItem abilityItem)
         {
             var clipData = abilityItem.GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;
@@ -307,7 +307,7 @@ namespace EGamePlay
             }
         }
 
-        /// <summary>   ÊäÈëÎ»ÖÃÅö×²Ìå     </summary>
+        /// <summary>   è¾“å…¥ä½ç½®ç¢°æ’ä½“     </summary>
         public static void SelectedPositionProcess(AbilityItem abilityItem, Vector3 InputPoint)
         {
             var clipData = abilityItem.GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;
@@ -318,7 +318,7 @@ namespace EGamePlay
             }
         }
 
-        /// <summary>   ÊäÈë·½ÏòÅö×²Ìå     </summary>
+        /// <summary>   è¾“å…¥æ–¹å‘ç¢°æ’ä½“     </summary>
         public static void SelectedDirectionProcess(AbilityItem abilityItem)
         {
             var clipData = abilityItem.GetComponent<AbilityItemCollisionExecuteComponent>().ExecuteClipData;

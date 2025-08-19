@@ -22,7 +22,7 @@ namespace EGamePlay
 
             var clipType = entity.ClipData.ExecuteClipType;
 #if UNITY
-            /// ²¥·ÅÌØĞ§Ğ§¹û
+            /// æ’­æ”¾ç‰¹æ•ˆæ•ˆæœ
             if (clipType == ExecuteClipType.ParticleEffect)
             {
                 var animationEffect = entity.ClipData.ParticleEffectData;
@@ -30,7 +30,7 @@ namespace EGamePlay
             }
 #endif
 
-            /// Ê±¼äµ½´¥·¢Ö´ĞĞĞ§¹û
+            /// æ—¶é—´åˆ°è§¦å‘æ‰§è¡Œæ•ˆæœ
             if (clipType == ExecuteClipType.ActionEvent)
             {
                 entity.AddComponent<ExecuteTimeTriggerComponent>(x =>
@@ -159,7 +159,7 @@ namespace EGamePlay
             //entity.GetParent<AbilityExecution>().OwnerEntity.Publish(entity.ClipData.AnimationData.AnimationClip);
         }
 
-        /// <summary>   ¼¼ÄÜÅö×²ÌåÉú³É   </summary>
+        /// <summary>   æŠ€èƒ½ç¢°æ’ä½“ç”Ÿæˆ   </summary>
         private static void Trigger_CollisionItem(ExecuteClip entity)
         {
             var execution = entity.GetParent<AbilityExecution>();

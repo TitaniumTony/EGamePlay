@@ -40,20 +40,20 @@ namespace EGamePlay
             abilityEffect.EffectConfig = effectConfig;
             abilityEffect.Name = effectConfig.GetType().Name;
 
-            /// ĞĞ¶¯½ûÖÆ
+            /// è¡ŒåŠ¨ç¦åˆ¶
             if (effectConfig is ActionControlEffect) abilityEffect.AddComponent<EffectActionControlComponent>();
-            /// ÊôĞÔĞŞÊÎ
+            /// å±æ€§ä¿®é¥°
             if (effectConfig is AttributeModifyEffect) abilityEffect.AddComponent<EffectAttributeModifyComponent>();
 
-            /// ÉËº¦Ğ§¹û
+            /// ä¼¤å®³æ•ˆæœ
             if (effectConfig is DamageEffect) abilityEffect.AddComponent<EffectDamageComponent>();
-            /// ÖÎÁÆĞ§¹û
+            /// æ²»ç–—æ•ˆæœ
             if (effectConfig is CureEffect) abilityEffect.AddComponent<EffectCureComponent>();
-            /// ¹â¶Ü·ÀÓùĞ§¹û
+            /// å…‰ç›¾é˜²å¾¡æ•ˆæœ
             if (effectConfig is ShieldDefenseEffect) abilityEffect.AddComponent<EffectShieldDefenseComponent>();
-            /// Ê©¼Ó×´Ì¬Ğ§¹û
+            /// æ–½åŠ çŠ¶æ€æ•ˆæœ
             if (effectConfig is AddStatusEffect) abilityEffect.AddComponent<EffectAddBuffComponent>();
-            /// Ğ§¹ûĞŞÊÎ
+            /// æ•ˆæœä¿®é¥°
             var decorators = abilityEffect.EffectConfig.Decorators;
             if (decorators != null && decorators.Count > 0) abilityEffect.AddComponent<EffectDecoratorComponent>();
             return abilityEffect;

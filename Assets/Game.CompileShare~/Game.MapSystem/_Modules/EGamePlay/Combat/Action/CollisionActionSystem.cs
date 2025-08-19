@@ -25,7 +25,7 @@ namespace EGamePlay
             EcsEntity.Destroy(entity);
         }
 
-        //前置处理
+        //鍓嶇疆澶勭悊
         private static void ActionProcess(CollisionAction entity)
         {
 
@@ -73,7 +73,7 @@ namespace EGamePlay
             FinishAction(entity);
         }
 
-        //后置处理
+        //鍚庣疆澶勭悊
         private static void AfterActionProcess(CollisionAction entity)
         {
             //BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PostExecuteCure, entity);

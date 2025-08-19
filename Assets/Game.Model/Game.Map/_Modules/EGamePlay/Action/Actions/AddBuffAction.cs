@@ -31,7 +31,7 @@ namespace EGamePlay.Combat
     }
 
     /// <summary>
-    /// Ê©¼Ó×´Ì¬ĞĞ¶¯
+    /// æ–½åŠ çŠ¶æ€è¡ŒåŠ¨
     /// </summary>
     public class AddBuffAction : EcsEntity, IActionExecute
     {
@@ -39,13 +39,13 @@ namespace EGamePlay.Combat
         public AddStatusEffect AddStatusEffect => SourceAssignAction.AbilityEffect.EffectConfig as AddStatusEffect;
         public Ability BuffAbility { get; set; }
 
-        /// ĞĞ¶¯ÄÜÁ¦
+        /// è¡ŒåŠ¨èƒ½åŠ›
         public EcsEntity ActionAbility { get; set; }
-        /// Ğ§¹û¸³¸øĞĞ¶¯Ô´
+        /// æ•ˆæœèµ‹ç»™è¡ŒåŠ¨æº
         public EffectAssignAction SourceAssignAction { get; set; }
-        /// ĞĞ¶¯ÊµÌå
+        /// è¡ŒåŠ¨å®ä½“
         public CombatEntity Creator { get; set; }
-        /// Ä¿±ê¶ÔÏó
+        /// ç›®æ ‡å¯¹è±¡
         public EcsEntity Target { get; set; }
     }
 }

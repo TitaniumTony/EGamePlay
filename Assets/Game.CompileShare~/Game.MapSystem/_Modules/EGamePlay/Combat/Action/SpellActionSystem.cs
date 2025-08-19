@@ -24,7 +24,7 @@ namespace EGamePlay
             EcsEntity.Destroy(entity);
         }
 
-        //前置处理
+        //鍓嶇疆澶勭悊
         private static void ActionProcess(SpellAction entity)
         {
             BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PreExecuteSpell, entity);
@@ -69,7 +69,7 @@ namespace EGamePlay
             }
         }
 
-        //后置处理
+        //鍚庣疆澶勭悊
         private static void AfterActionProcess(SpellAction entity)
         {
             BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PostExecuteSpell, entity);

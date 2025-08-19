@@ -22,7 +22,7 @@ using UnityEngine.UI;
 
 namespace EGamePlay.Combat
 {
-    [CreateAssetMenu(fileName = "Execution", menuName = "ÄÜÁ¦/Execution")]
+    [CreateAssetMenu(fileName = "Execution", menuName = "èƒ½åŠ›/Execution")]
     public class ExecutionObject
 #if UNITY
  : ScriptableObject
@@ -48,15 +48,15 @@ namespace EGamePlay.Combat
         public GameObject ObjAsset;
         public ExecutionTargetInputType TargetInputType;
         [ShowIf("TargetInputType", ExecutionTargetInputType.Point)]
-        [LabelText("·¶Î§Ö¸Ê¾Æ÷"), JsonIgnore]
+        [LabelText("èŒƒå›´æŒ‡ç¤ºå™¨"), JsonIgnore]
         public GameObject RangeIndicatorObjAsset;
         [ShowIf("TargetInputType", ExecutionTargetInputType.Point)]
-        [LabelText("Ä¿±êµãÖ¸Ê¾Æ÷"), JsonIgnore]
+        [LabelText("ç›®æ ‡ç‚¹æŒ‡ç¤ºå™¨"), JsonIgnore]
         public GameObject PointIndicatorObjAsset;
         [ShowIf("TargetInputType", ExecutionTargetInputType.Point)]
-        [LabelText("³¯ÏòÖ¸Ê¾Æ÷"), JsonIgnore]
+        [LabelText("æœå‘æŒ‡ç¤ºå™¨"), JsonIgnore]
         public GameObject DirectionIndicatorObjAsset;
-        [LabelText("ÆğÊ¼×ø±êÆ«ÒÆ")]
+        [LabelText("èµ·å§‹åæ ‡åç§»")]
         public Vector3 Offset;
 
         [ReadOnly, Space(10)]
@@ -100,7 +100,7 @@ namespace EGamePlay.Combat
         }
 
         //[OnInspectorGUI("BeginBox", append: false)]
-        //[SerializeField, LabelText("×Ô¶¯ÖØÃüÃû")]
+        //[SerializeField, LabelText("è‡ªåŠ¨é‡å‘½å")]
         //public bool AutoRename { get { return StatusConfigObject.AutoRenameStatic; } set { StatusConfigObject.AutoRenameStatic = value; } }
 
         //private void OnEnable()
@@ -124,7 +124,7 @@ namespace EGamePlay.Combat
         //    RenameFile();
         //}
 
-        //[Button("ÖØÃüÃûÅäÖÃÎÄ¼ş"), HideIf("AutoRename")]
+        //[Button("é‡å‘½åé…ç½®æ–‡ä»¶"), HideIf("AutoRename")]
         private void RenameFile()
         {
             string[] guids = UnityEditor.Selection.assetGUIDs;

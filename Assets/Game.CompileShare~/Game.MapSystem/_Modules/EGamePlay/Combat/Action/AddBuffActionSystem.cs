@@ -25,7 +25,7 @@ namespace EGamePlay
             EcsEntity.Destroy(entity);
         }
 
-        //Ç°ÖÃ´¦Àí
+        //å‰ç½®å¤„ç†
         private static void PreProcess(AddBuffAction entity)
         {
 
@@ -42,7 +42,7 @@ namespace EGamePlay
                 buffObject = AssetUtils.LoadObject<AbilityConfigObject>($"{AbilityManagerObject.BuffResFolder}/Buff_{statusId}");
             }
             var buffConfig = AbilityConfigCategory.Instance.Get(buffObject.Id);
-            var canStack = buffConfig.CanStack == "ÊÇ";
+            var canStack = buffConfig.CanStack == "æ˜¯";
             var statusComp = entity.Target.GetComponent<BuffComponent>();
             if (canStack == false)
             {
@@ -77,14 +77,14 @@ namespace EGamePlay
             FinishAction(entity);
         }
 
-        //ºóÖÃ´¦Àí
+        //åç½®å¤„ç†
         private static void PostProcess(AddBuffAction entity)
         {
             BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PostExecuteStatus, entity);
             BehaviourPointSystem.TriggerActionPoint(entity.Target as CombatEntity, ActionPointType.PostSufferStatus, entity);
         }
 
-        /// ÕâÀï´¦Àí¼¼ÄÜ´«ÈëµÄ²ÎÊıÊıÖµÌæ»»
+        /// è¿™é‡Œå¤„ç†æŠ€èƒ½ä¼ å…¥çš„å‚æ•°æ•°å€¼æ›¿æ¢
         public static void ProcessInputKVParams(AddBuffAction entity, Ability ability, Dictionary<string, string> Params)
         {
             foreach (var abilityTrigger in ability.AbilityTriggers)

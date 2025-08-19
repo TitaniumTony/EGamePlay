@@ -8,7 +8,7 @@ using EGamePlay.Combat;
 namespace EGamePlay
 {
     /// <summary>
-    /// 生命周期组件
+    /// 鐢熷懡鍛ㄦ湡缁勪欢
     /// </summary>
     public class LifeTimeSystem : AComponentSystem<EcsEntity, LifeTimeComponent>,
         IAwake<EcsEntity, LifeTimeComponent>

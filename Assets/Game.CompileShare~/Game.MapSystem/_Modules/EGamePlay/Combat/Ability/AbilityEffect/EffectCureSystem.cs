@@ -24,9 +24,9 @@ namespace EGamePlay
         private static int ParseValue(AbilityEffect entity)
         {
             var expression = ExpressionHelper.ExpressionParser.EvaluateExpression(entity.GetComponent<EffectCureComponent>().CureValueProperty);
-            if (expression.Parameters.ContainsKey("ÉúÃüÖµÉÏÏŞ"))
+            if (expression.Parameters.ContainsKey("ç”Ÿå‘½å€¼ä¸Šé™"))
             {
-                expression.Parameters["ÉúÃüÖµÉÏÏŞ"].Value = entity.OwnerEntity.GetComponent<AttributeComponent>().HealthPoint.Value;
+                expression.Parameters["ç”Ÿå‘½å€¼ä¸Šé™"].Value = entity.OwnerEntity.GetComponent<AttributeComponent>().HealthPoint.Value;
             }
             var v1 = (int)System.Math.Ceiling((float)expression.Value);
             return v1;

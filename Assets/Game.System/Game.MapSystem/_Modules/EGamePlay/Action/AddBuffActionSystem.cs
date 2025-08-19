@@ -25,7 +25,7 @@ namespace EGamePlay
             EcsObject.Destroy(entity);
         }
 
-        //Ç°ÖÃ´¦Àí
+        //å‰ç½®å¤„ç†
         private static bool ActionCheckProcess(AddBuffAction entity)
         {
             return true;
@@ -45,7 +45,7 @@ namespace EGamePlay
                     buffObject = AssetUtils.LoadObject<AbilityConfigObject>($"{AbilityManagerObject.BuffResFolder}/Buff_{statusId}");
                 }
                 var buffConfig = AbilityConfigCategory.Instance.Get(buffObject.Id);
-                var canStack = buffConfig.CanStack == "ÊÇ";
+                var canStack = buffConfig.CanStack == "æ˜¯";
                 if (canStack == false)
                 {
                     if (BuffSystem.HasBuff(entity.Target as CombatEntity, buffConfig.KeyName))
@@ -79,7 +79,7 @@ namespace EGamePlay
             FinishAction(entity);
         }
 
-        /// ÕâÀï´¦Àí¼¼ÄÜ´«ÈëµÄ²ÎÊıÊıÖµÌæ»»
+        /// è¿™é‡Œå¤„ç†æŠ€èƒ½ä¼ å…¥çš„å‚æ•°æ•°å€¼æ›¿æ¢
         public static void ProcessInputKVParams(AddBuffAction entity, Ability ability, Dictionary<string, string> Params)
         {
             foreach (var abilityTrigger in ability.AbilityTriggers)

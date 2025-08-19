@@ -24,7 +24,7 @@ namespace EGamePlay
             EcsEntity.Destroy(entity);
         }
 
-        //前置处理
+        //鍓嶇疆澶勭悊
         private static void ActionProcess(CureAction entity)
         {
             if (entity.SourceAssignAction != null && entity.SourceAssignAction.AbilityEffect != null)
@@ -52,7 +52,7 @@ namespace EGamePlay
             FinishAction(entity);
         }
 
-        //后置处理
+        //鍚庣疆澶勭悊
         private static void AfterActionProcess(CureAction entity)
         {
             BehaviourPointSystem.TriggerActionPoint(entity.Creator, ActionPointType.PostExecuteCure, entity);

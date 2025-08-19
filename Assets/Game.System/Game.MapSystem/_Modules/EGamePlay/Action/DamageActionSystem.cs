@@ -24,7 +24,7 @@ namespace EGamePlay
             EcsObject.Destroy(entity);
         }
 
-        //前置处理
+        //鍓嶇疆澶勭悊
         private static bool ActionCheckProcess(DamageAction entity)
         {
             if (entity.DamageSource == DamageSource.Attack)
@@ -74,7 +74,7 @@ namespace EGamePlay
                 return ActionCheckProcess(entity);
             }, _ =>
             {
-                //伤害实际施效流程
+                //浼ゅ瀹為檯鏂芥晥娴佺▼
                 HealthSystem.ConsumeHealth(entity.Target, entity);
                 return true;
             });
@@ -87,7 +87,7 @@ namespace EGamePlay
             FinishAction(entity);
         }
 
-        //后置处理
+        //鍚庣疆澶勭悊
         private static void AfterActionProcess(DamageAction entity)
         {
 
