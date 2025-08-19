@@ -10,6 +10,7 @@ using ECSGame;
 using System.Threading;
 using System.ComponentModel;
 using ECSUnity;
+using CombatEntity = EGamePlay.Combat.CombatEntity;
 
 namespace EGamePlay
 {
@@ -37,51 +38,44 @@ namespace EGamePlay
             var abilityComp = component.OwnerEntity.GetComponent<SkillComponent>();
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Cursor.visible = false;
                 component.PreviewingSkill = abilityComp.InputSkills[KeyCode.Q];
-                EnterPreview(game);
+                CastSkillDirectly(game, component.PreviewingSkill);
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                Cursor.visible = false;
                 component.PreviewingSkill = abilityComp.InputSkills[KeyCode.W];
-                EnterPreview(game);
+                CastSkillDirectly(game, component.PreviewingSkill);
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Cursor.visible = false;
                 component.PreviewingSkill = abilityComp.InputSkills[KeyCode.E];
-                EnterPreview(game);
+                CastSkillDirectly(game, component.PreviewingSkill);
             }
             //#if !EGAMEPLAY_EXCEL
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Cursor.visible = false;
                 component.PreviewingSkill = abilityComp.InputSkills[KeyCode.R];
-                EnterPreview(game);
+                CastSkillDirectly(game, component.PreviewingSkill);
             }
             //if (Input.GetKeyDown(KeyCode.T))
             //{
-            //    Cursor.visible = false;
             //    component.PreviewingSkill = abilityComp.InputSkills[KeyCode.T];
-            //    EnterPreview(game);
+            //    CastSkillDirectly(game, component.PreviewingSkill);
             //}
             if (Input.GetKeyDown(KeyCode.Y))
             {
                 component.PreviewingSkill = abilityComp.InputSkills[KeyCode.Y];
-                //SpellSystem.SpellWithTarget(component.PreviewingSkill.OwnerEntity, component.PreviewingSkill, component.PreviewingSkill.OwnerEntity);
-                EnterPreview(game);
+                CastSkillDirectly(game, component.PreviewingSkill);
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
-                Cursor.visible = false;
                 component.PreviewingSkill = abilityComp.InputSkills[KeyCode.A];
-                EnterPreview(game);
+                CastSkillDirectly(game, component.PreviewingSkill);
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 component.PreviewingSkill = abilityComp.InputSkills[KeyCode.S];
-                OnSelectedSelf(game);
+                CastSkillDirectly(game, component.PreviewingSkill);
             }
             //#endif
             if (Input.GetMouseButtonDown((int)UnityEngine.UIElements.MouseButton.RightMouse))
@@ -190,6 +184,125 @@ namespace EGamePlay
                 action.SkillAbility = spellSkill;
                 SpellActionSystem.Execute(action, false);
             }
+        }
+
+        /// <summary>
+        /// 跳过预览直接释放技能：根据技能类型自动选择合适的释放方式
+        /// </summary>
+        private static void CastSkillDirectly(Game game, Ability skill)
+        {
+            if (skill == null) return;
+
+            var component = game.GetComponent<SpellPreviewComponent>();
+            var caster = component.OwnerEntity;
+
+            if (caster == null) return;
+
+            var targetSelectType = SkillTargetSelectType.Custom;
+            var affectTargetType = SkillAffectTargetType.EnemyTeam;
+            var skillId = skill.Config.Id;
+
+            // 解析技能配置
+            if (skill.Config.TargetSelect == "手动指定") targetSelectType = SkillTargetSelectType.PlayerSelect;
+            if (skill.Config.TargetSelect == "碰撞检测") targetSelectType = SkillTargetSelectType.CollisionSelect;
+            if (skill.Config.TargetSelect == "条件指定") targetSelectType = SkillTargetSelectType.ConditionSelect;
+            if (skill.Config.TargetGroup == "自身") affectTargetType = SkillAffectTargetType.Self;
+            if (skill.Config.TargetGroup == "己方") affectTargetType = SkillAffectTargetType.SelfTeam;
+            if (skill.Config.TargetGroup == "敌方") affectTargetType = SkillAffectTargetType.EnemyTeam;
+
+            // 根据技能类型直接释放
+            if (affectTargetType == SkillAffectTargetType.Self)
+            {
+                // 自身目标技能
+                SpellSystem.SpellWithTarget(caster, skill, caster);
+            }
+            else if (targetSelectType == SkillTargetSelectType.PlayerSelect)
+            {
+                // 手动指定目标技能 - 自动选择最近的敌人
+                var target = FindNearestTarget(game, caster, affectTargetType);
+                if (target != null)
+                {
+                    SpellSystem.SpellWithTarget(caster, skill, target);
+                }
+            }
+            else if (targetSelectType == SkillTargetSelectType.CollisionSelect)
+            {
+                // 碰撞检测技能 - 使用玩家前方位置
+                var forwardPoint = GetForwardPoint(caster);
+                SpellSystem.SpellWithPoint(caster, skill, forwardPoint);
+            }
+            else if (targetSelectType == SkillTargetSelectType.ConditionSelect)
+            {
+                // 条件指定技能 - 特殊处理
+                if (skillId == 1006)
+                {
+                    SelectTargetsWithDistance(game, skill, 5);
+                }
+                else
+                {
+                    // 默认使用最近目标
+                    var target = FindNearestTarget(game, caster, affectTargetType);
+                    if (target != null)
+                    {
+                        SpellSystem.SpellWithTarget(caster, skill, target);
+                    }
+                }
+            }
+            else
+            {
+                // 默认情况 - 使用最近目标
+                var target = FindNearestTarget(game, caster, affectTargetType);
+                if (target != null)
+                {
+                    SpellSystem.SpellWithTarget(caster, skill, target);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 查找最近的目标
+        /// </summary>
+        private static CombatEntity FindNearestTarget(Game game, CombatEntity caster, SkillAffectTargetType affectTargetType)
+        {
+            CombatEntity nearestTarget = null;
+            float minDistance = float.MaxValue;
+
+            foreach (var kv in game.Object2Entities)
+            {
+                var entity = kv.Value;
+                if (entity == null || entity == caster) continue;
+
+                // 根据目标类型过滤
+                bool isValidTarget = false;
+                if (affectTargetType == SkillAffectTargetType.EnemyTeam && !entity.IsHero)
+                {
+                    isValidTarget = true; // 敌方单位
+                }
+                else if (affectTargetType == SkillAffectTargetType.SelfTeam && entity.IsHero)
+                {
+                    isValidTarget = true; // 友方单位
+                }
+
+                if (!isValidTarget) continue;
+
+                var distance = Vector3.Distance(caster.Position, entity.Position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearestTarget = entity;
+                }
+            }
+
+            return nearestTarget;
+        }
+
+        /// <summary>
+        /// 获取施法者前方的点位
+        /// </summary>
+        private static Vector3 GetForwardPoint(CombatEntity caster)
+        {
+            var forward = caster.Rotation * Vector3.forward;
+            return caster.Position + forward * 3f; // 前方3米处
         }
     }
 }
